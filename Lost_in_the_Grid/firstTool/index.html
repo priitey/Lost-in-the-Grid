@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+  @font-face {
+      font-family: 'Px437_DOS-V_re_ANK24';
+      src: url('assets/Px437_fontWebKit/Px437_DOS-V_re_ANK24.ttf') format('truetype'), 
+           url('asset/Px437_fontWebKit/Px437_DOS-V_re_ANK24.woff2') format('woff2'),
+           url('assets/Px437_fontWebKit/Px437_DOS-V_re_ANK24.woff') format('woff');
+    }
+  body, html {
+      padding: 0;
+      margin: 0;
+      font-family: 'Courier New';
+      background: #000000;
+      color: #14de1e;
+    }
+  label {
+      color: #14de1e;
+  }
+  #ui {
+      font-size: 0.6em;
+      position: absolute;
+      top: 46.75vw;
+      width: 50px;
+      left: 76vw;
+      z-index: 10; /* Ensure it is above other elements */
+      margin-top: 25px;
+    }
+  input[type="file" i] {
+      font-family: 'Courier New';
+      appearance: none;
+      background-color: initial;
+      cursor: default;
+      align-items: baseline;
+      color: #14de1e;
+      text-overflow: ellipsis;
+      text-align: start !important;
+      padding: initial;
+      border: initial;
+      white-space: pre;
+    }
+  input[type="color" i] {
+    appearance: auto;
+    inline-size: 50px;
+    block-size: 27px;
+    cursor: default;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: buttonborder;
+    border-image: initial;
+    padding: 1px 2px;
+    }  
+  #artboard {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+  #canvasWrapper {
+      width: 100%;
+      height: 100%;
+    }
+  .spacer-10 {
+      height: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <script language="javascript" type="text/javascript" src="libraries/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="iterateTool.js"></script>
+  <!--<script src="https://cdn.jsdelivr.net/npm/p5.save-frames@latest/dist/p5.save-frames.umd.min.js"></script>-->
+  <script src="https://unpkg.com/p5.touchgui@0.5.2/lib/p5.touchgui.js"></script>
+  <script src="iterateTool.js"></script>
+
+  <div id="ui">
+    <div class="ui-component">
+       <label>Font_Upload</label>
+       <input id="fontUpload" type="file">
+    </div>
+  </div> 
+  
+  <div id="artboard">
+      <div id="canvasWrapper"></div>
+  </div>
+
+</body>
+</html>

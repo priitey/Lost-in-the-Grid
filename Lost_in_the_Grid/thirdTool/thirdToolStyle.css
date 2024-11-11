@@ -1,0 +1,115 @@
+body,
+html {
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+  color: #14de1e;
+  height: 100%; /* Ensure the body and html elements take up the full height */
+  overflow: hidden; /* Prevent the body from scrolling */
+}
+
+body {
+  display: grid;
+  background: #000000;
+  grid-template-columns: 300px 1fr;
+  overflow: hidden; /* Prevent the body from scrolling */
+}
+
+#ui {
+  background: #000000;
+  height: 100vh;
+  padding: 15px;
+  font-size: 12px;
+  overflow-y: auto; /* Make the #ui element scrollable */
+}
+
+#artboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.ui-component {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  padding-bottom: 10px;
+}
+
+input {
+  width: 100%;
+}
+
+input[type=number] {
+  border: 0;
+  box-shadow: none;
+  outline: 0;
+}
+
+input[type=text] {
+  border: none;
+  box-shadow: 0;
+  outline: 0;
+}
+
+input[type=range] {
+  border: 0;
+  box-shadow: none;
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  background: #14de1e;
+  height: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  color:#14de1e;
+  appearance: none;
+  background: #14de1e;
+  border: 0;
+  box-shadow: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  border: 0;
+  width: 10px;
+  height: 10px;
+  box-shadow: none;
+  background: #14de1e;
+  color:#14de1e;
+  border-radius: 100%;
+}
+
+details {
+  padding: 10px;
+  border: 1px solid #14de1e;
+  margin-bottom: 10px;
+}
+
+details summary {
+  cursor: pointer;
+}
+
+button {
+color: #14de1e;
+background-color:#000000;
+border-color:#14de1e;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.p-top-10 {
+  padding-top: 10px;
+}

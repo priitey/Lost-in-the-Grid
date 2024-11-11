@@ -1,0 +1,14 @@
+class vectorObjs {
+  contructor(x, y) {
+    this.dragging = false;
+    this.rollover = false;
+    this.x = x;
+    this.y = y;
+    this.radius = 15;
+  }
+  
+  over() {
+    if (mouseX
+    
+  }
+}
