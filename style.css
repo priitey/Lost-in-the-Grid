@@ -1,0 +1,110 @@
+@font-face {
+    font-family: 'Px437_DOS-V_re_ANK24';
+    src: url('Px437_fontWebKit/Px437_DOS-V_re_ANK24.ttf') format('truetype'), 
+         url('Px437_fontWebKit/Px437_DOS-V_re_ANK24.woff2') format('woff2'),
+         url('Px437_fontWebKit/Px437_DOS-V_re_ANK24.woff') format('woff');
+}
+
+body {
+    background-color: #000000;
+    font-family: 'Px437_DOS-V_re_ANK24', monospace;
+    margin: 0px;
+    padding: 0px;
+}
+
+.loadingScreen {
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #000000;
+}
+
+#artboard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h2 {
+    color: #14de1e;
+    font-size: 24px;
+    line-height: 1.5;
+}
+
+p {
+    color: #14de1e;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+a {
+    color: #000000; /* Default link color */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+}
+
+h2#toolLink a {
+    color: #14de1e; /* Default link color */
+    text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+    color: #90df94; /* Color when hovered */
+    text-decoration: underline; /* Underline on hover */
+}
+
+h2#toolLink a:hover {
+    color: #14de1e; /* Default link color */
+    text-decoration: underline; /* Remove underline */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 10px;
+}
+
+.grid-item {
+    outline: 1px solid #14de1e; /* White outline for grid items */
+    color: #14de1e;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 20px;
+    text-align: left;
+    background-color: #000000;
+}
+
+#grid-item-1 {
+    font-size: 38px;
+}
+
+#grid-item-2 {
+    color: #000000;
+    font-size: 11px;
+}
+
+#grid-item-5 {
+    color: #000000;
+    font-size: 11px;
+}
+
+#grid-item-7 {
+    color: #000000;
+    font-size: 11px;
+}
+
+#grid-item-9 {
+    color: #000000;
+    font-size: 11px;
+}
+
+@media (max-width: 500px) {
+    .grid {
+        grid-template-columns: 1fr; /* Single column */
+    }
+}
