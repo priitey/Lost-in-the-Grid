@@ -85,8 +85,8 @@ function setup() {
   
   cursor(CROSS);
   
-  // capture = createCapture(VIDEO);
-  // capture.hide();
+  capture = createCapture(VIDEO);
+  capture.hide();
   imageMode(CENTER);
 
   bg = color('#333333');
@@ -299,7 +299,7 @@ function mousePressed() {
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
       count++;
-      if (count > 5) {
+      if (count > 6) {
         count = 0;
       }
       currentTileType = count;
@@ -338,11 +338,13 @@ function highlightTile() {
     let tileKey = `${hoveredTile.i}-${hoveredTile.j}`;
     let obj = drawnObjsMap.get(tileKey);
     if (obj) {
-      if (obj.type === 5) {
-      text(`No Input`, hoveredTile.x + hoveredTile.w / 2, hoveredTile.y + hoveredTile.h / 2);
+      if (obj.type === 6) {
+        text(`No Input`, hoveredTile.x + hoveredTile.w / 2, hoveredTile.y + hoveredTile.h / 2);
+      } else if (obj.type === 5) {
+        text(`Camera Input`, hoveredTile.x + hoveredTile.w / 2, hoveredTile.y + hoveredTile.h / 2);
       } else {
-      let imageNum = obj.type + 1;  
-      text(`Input ${imageNum}`, hoveredTile.x + hoveredTile.w / 2, hoveredTile.y + hoveredTile.h / 2);
+        let imageNum = obj.type + 1;  
+        text(`Input ${imageNum}`, hoveredTile.x + hoveredTile.w / 2, hoveredTile.y + hoveredTile.h / 2);
       }
     }
   }
@@ -402,6 +404,9 @@ function drawObj() {
         case 4:
           imageToDraw = fileInput5 instanceof p5.Image ? fileInput5 : gif1;
           break;
+        case 5:
+          imageToDraw = image(capture, tile.x + tile.w / 2, tile.y + tile.h / 2, tile.w * padding, tile.h * padding);
+          break;  
         default:
           console.error("Unknown object type:", obj.type);
           break;
