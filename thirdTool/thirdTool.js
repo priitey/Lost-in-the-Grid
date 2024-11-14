@@ -9,6 +9,8 @@ var ranComp = document.getElementById("ranComp");
 var gutter = document.getElementById("gutter");
 var blendSelect = document.getElementById("blendSelect");
 var motionSelect = document.getElementById("motionSelect");
+var textInput = document.getElementById("textInput");
+var textInputSize = document.getElementById("textSize");
 
 // File upload HTML UI Components
 var fileInput1 = document.getElementById("fileInput1");
@@ -17,10 +19,14 @@ var fileInput3 = document.getElementById("fileInput3");
 var fileInput4 = document.getElementById("fileInput4");
 var fileInput5 = document.getElementById("fileInput5");
 
-// Colour picker
+// Colour pickers
 let bgColour = '#ffffff';
 document.getElementById('bgColor').addEventListener('input', function(event) {
   bgColour = event.target.value;
+});
+let textColor = '#14de1e';
+document.getElementById('textColor').addEventListener('input', function(event) {
+  textColor = event.target.value;
 });
 
 // Wave Motion HTML UI Components
@@ -58,7 +64,7 @@ let capture, gif1;
 let currentTileType = 0, count = 0;
 let drawnObjs = [], drawnObjsMap = new Map();
 let mousePressedFlag = false, debounceTimeout;
-let guidesFlag = true;
+let guidesFlag = true, padding;
 let font, img1 = null, img2 = null, img3 = null, img4 = null, img5 = null;
 
 function preload() {
@@ -85,8 +91,8 @@ function setup() {
   
   cursor(CROSS);
   
-  capture = createCapture(VIDEO);
-  capture.hide();
+  // capture = createCapture(VIDEO);
+  // capture.hide();
   imageMode(CENTER);
 
   bg = color('#333333');
@@ -136,15 +142,15 @@ function draw() {
 }
 
 function keyPressed() {
-  if (keyCode === ENTER) {
-    noLoop();
-  }
-  if (keyCode === 32) { // SPACE key code is 32
-    loop();
-  }
-  if (key === 's') {
-    saveFrames('frame', 'png', 1, 5);
-  }
+  // if (keyCode === ENTER) {
+  //   noLoop();
+  // }
+  // if (keyCode === 32) { // SPACE key code is 32
+  //   loop();
+  // }
+  // if (key === 's') {
+  //   saveFrames('frame', 'png', 1, 5);
+  // }
 }
 
                       //--------------------------------------------------------------\\
@@ -368,16 +374,25 @@ function gridGuides() {
   }
 }
 
+// function displayText() {
+//   let tileWidthForFont = tileW * padding;
+//   let widthToFontRatio = 0.1;
+//   let fontSize = tileWidthForFont * widthToFontRatio;
+//   fill(255);
+//   textSize(fontSize);
+//   textAlign(CENTER, CENTER);
+//   text(textInput.value, tile.x + tile.w / 2, tile.y + tile.h / 2);
+// }
+
 function drawObj() {
   let padding = gutter.value;
 
   drawnObjsMap.forEach(obj => {
-    let tile = tileGrid[obj.i][obj.j]; // Access tile directly
+    let tile = tileGrid[obj.i][obj.j];
     if (tile) {
-
       if (blendSelect.value == "semi-blend") {
-      push();
-      blendMode(DIFFERENCE);
+        push();
+        blendMode(DIFFERENCE);
       }
 
       if (blendSelect.value == "full-blend") {
@@ -385,9 +400,9 @@ function drawObj() {
       } else if (blendSelect.value == "normal") {
         blendMode(BLEND);
       }
+
       let imageToDraw;
 
-      // Select the image based on the object type, with gif1 as the default fallback
       switch (obj.type) {
         case 0:
           imageToDraw = fileInput1 instanceof p5.Image ? fileInput1 : gif1;
@@ -405,14 +420,21 @@ function drawObj() {
           imageToDraw = fileInput5 instanceof p5.Image ? fileInput5 : gif1;
           break;
         case 5:
-          imageToDraw = image(capture, tile.x + tile.w / 2, tile.y + tile.h / 2, tile.w * padding, tile.h * padding);
-          break;  
+          // Dynamically calculate tileWidthForFont and fontSize based on the latest tileW
+          let tileWidthForFont = tile.w * padding;
+          let widthToFontRatio = textInputSize.value;
+          let fontSize = tileWidthForFont * widthToFontRatio;
+          fill(textColor);
+          noStroke();
+          textSize(fontSize);
+          textAlign(CENTER, CENTER);
+          text(textInput.value, tile.x + tile.w / 2, tile.y + tile.h / 2);
+          break;
         default:
           console.error("Unknown object type:", obj.type);
           break;
       }
 
-      // Render the selected image, or fallback to gif1 if no image is loaded
       if (imageToDraw) {
         image(imageToDraw, tile.x + tile.w / 2, tile.y + tile.h / 2, tile.w * padding, tile.h * padding);
       } else {
@@ -420,11 +442,12 @@ function drawObj() {
       }
 
       if (blendSelect.value == "semi-blend") {
-      pop();
+        pop();
       }
     }
   });
 }
+
 
 function handleChangeEvent(event) {
   let file = event.target.files[0];
