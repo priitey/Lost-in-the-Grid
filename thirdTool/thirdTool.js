@@ -56,7 +56,7 @@ var startPointYMouse = document.getElementById("startPointYMouse");
 var endPointYMouse = document.getElementById("endPointYMouse");
 
 //p5.js sketch global variables here
-let gridWidth, gridHeight, gridArea, gridXOffset, gridYOffset, tileGrid = [];
+let gridWidth, gridHeight, gridXOffset, gridYOffset, tileGrid = [];
 let tilesX, tilesY, tileW, tileH, tiles = [], minTileSize = 20;
 let bg, fg, alt, hl;
 let motion = false, scaleFactor = [], waveSpeedParsed;
@@ -107,7 +107,6 @@ function draw() {
   // Set grid dimensions and position
   gridWidth = width * 0.01 * (parseInt(gWidth.value)); // Keep between 0.1 and 1.0
   gridHeight = height * 0.01 * (parseInt(gHeight.value)); // Keep between 0.1 and 1.0
-  gridArea = gridWidth * gridHeight;
   gridXOffset = width * 0.01 * (parseInt(xPosSlider.value)); // Keep between 0.0 and 0.1
   gridYOffset = height * 0.01 * (parseInt(yPosSlider.value)); // Keep between 0.0 and 0.1
 
@@ -347,7 +346,7 @@ function highlightTile() {
       if (obj.type === 6) {
         text(`No Input`, hoveredTile.x + hoveredTile.w / 2, hoveredTile.y + hoveredTile.h / 2);
       } else if (obj.type === 5) {
-        text(`Camera Input`, hoveredTile.x + hoveredTile.w / 2, hoveredTile.y + hoveredTile.h / 2);
+        text(`Text Input`, hoveredTile.x + hoveredTile.w / 2, hoveredTile.y + hoveredTile.h / 2);
       } else {
         let imageNum = obj.type + 1;  
         text(`Input ${imageNum}`, hoveredTile.x + hoveredTile.w / 2, hoveredTile.y + hoveredTile.h / 2);
